@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="theme-color" content="#f7dce8">
+
+    <title>Proyecto Mariposa</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         INICIO
+    ========================== -->
+    <section id="inicio" class="screen active">
+
+        <div class="top">
+            <div>
+                <p class="small">BUENOS DÍAS 🦋</p>
+                <h1>Hola, Angela</h1>
+            </div>
+
+            <div class="butterfly">🦋</div>
+        </div>
+
+        <div class="hero-card">
+
+            <p>PROYECTO MARIPOSA</p>
+
+            <h2>60 días<br>para volver a mí.</h2>
+
+            <div class="progress-container">
+                <div id="progressBar"></div>
+            </div>
+
+            <div class="progress-info">
+                <span id="daysCompleted">0 días</span>
+                <span>60 días</span>
+            </div>
+
+        </div>
+
+
+        <div class="section-title">
+            <h2>Hoy</h2>
+            <span id="todayDate"></span>
+        </div>
+
+
+        <div class="habit-grid">
+
+            <button class="habit" onclick="toggleHabit(this,'gym')">
+                <span>💪</span>
+                <b>Gym</b>
+                <small>Entrenamiento</small>
+            </button>
+
+            <button class="habit" onclick="toggleHabit(this,'water')">
+                <span>💧</span>
+                <b>Agua</b>
+                <small id="waterText">0 / 8 vasos</small>
+            </button>
+
+            <button class="habit" onclick="toggleHabit(this,'protein')">
+                <span>🍗</span>
+                <b>Proteína</b>
+                <small>Objetivo diario</small>
+            </button>
+
+            <button class="habit" onclick="toggleHabit(this,'stretch')">
+                <span>🧘‍♀️</span>
+                <b>Estirar</b>
+                <small>5 minutos</small>
+            </button>
+
+        </div>
+
+
+        <div class="quote-card">
+
+            <span>✨</span>
+
+            <p>
+                No tienes que reconstruir toda tu vida hoy.
+                Solo tienes que dar el siguiente paso.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         GYM
+    ========================== -->
+
+    <section id="gym" class="screen">
+
+        <div class="page-header">
+
+            <button onclick="goTo('inicio')">‹</button>
+
+            <div>
+                <p class="small">SEMANA <span id="weekNumber">1</span></p>
+                <h1>Entrenamiento</h1>
+            </div>
+
+        </div>
+
+
+        <div class="week-selector">
+
+            <button onclick="changeDay(-1)">‹</button>
+
+            <div>
+                <b id="gymDay">Lunes</b>
+                <small id="gymFocus">Glúteo + femoral</small>
+            </div>
+
+            <button onclick="changeDay(1)">›</button>
+
+        </div>
+
+
+        <div id="workoutList"></div>
+
+
+        <button class="complete-button" onclick="completeWorkout()">
+            ✓ Completar entrenamiento
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         PROGRESO
+    ========================== -->
+
+    <section id="progreso" class="screen">
+
+        <div class="page-header">
+
+            <button onclick="goTo('inicio')">‹</button>
+
+            <div>
+                <p class="small">MI EVOLUCIÓN</p>
+                <h1>Progreso</h1>
+            </div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat">
+                <span>⚖️</span>
+                <b id="weightValue">--</b>
+                <small>kg</small>
+            </div>
+
+            <div class="stat">
+                <span>📏</span>
+                <b id="waistValue">--</b>
+                <small>cm cintura</small>
+            </div>
+
+            <div class="stat">
+                <span>🍑</span>
+                <b id="hipValue">--</b>
+                <small>cm cadera</small>
+            </div>
+
+            <div class="stat">
+                <span>🔥</span>
+                <b id="workoutCount">0</b>
+                <small>entrenamientos</small>
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Mis medidas</h2>
+
+            <label>Peso (kg)</label>
+            <input id="weightInput" type="number" placeholder="Ej. 60.5">
+
+            <label>Cintura (cm)</label>
+            <input id="waistInput" type="number" placeholder="Ej. 70">
+
+            <label>Abdomen (cm)</label>
+            <input id="abdomenInput" type="number" placeholder="Ej. 78">
+
+            <label>Cadera (cm)</label>
+            <input id="hipInput" type="number" placeholder="Ej. 98">
+
+            <label>Glúteo (cm)</label>
+            <input id="gluteInput" type="number" placeholder="Ej. 100">
+
+            <button class="save-button" onclick="saveMeasurements()">
+                Guardar medidas
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Fotos de progreso</h2>
+
+            <div class="photo-grid">
+
+                <div class="photo-slot">
+                    <span>📷</span>
+                    <small>Día 1</small>
+                </div>
+
+                <div class="photo-slot">
+                    <span>📷</span>
+                    <small>Día 30</small>
+                </div>
+
+                <div class="photo-slot">
+                    <span>📷</span>
+                    <small>Día 60</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIARIO
+    ========================== -->
+
+    <section id="diario" class="screen">
+
+        <div class="page-header">
+
+            <button onclick="goTo('inicio')">‹</button>
+
+            <div>
+                <p class="small">MI ESPACIO</p>
+                <h1>Diario 🦋</h1>
+            </div>
+
+        </div>
+
+
+        <div class="mood-card">
+
+            <h2>¿Cómo me siento hoy?</h2>
+
+            <div class="moods">
+
+                <button onclick="selectMood('🥰')">🥰</button>
+                <button onclick="selectMood('😊')">😊</button>
+                <button onclick="selectMood('😌')">😌</button>
+                <button onclick="selectMood('😴')">😴</button>
+                <button onclick="selectMood('🥲')">🥲</button>
+
+            </div>
+
+            <p id="selectedMood">Selecciona uno</p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Reflexión de hoy</h2>
+
+            <textarea
+                id="journal"
+                placeholder="¿Qué quiero recordar de este día?">
+            </textarea>
+
+            <button class="save-button" onclick="saveJournal()">
+                Guardar reflexión
+            </button>
+
+        </div>
+
+
+        <div class="quote-card">
+
+            <span>🦋</span>
+
+            <p>
+                Estoy aprendiendo a disfrutar el proceso,
+                no solamente a esperar el resultado.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         NAVEGACIÓN
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+        <button onclick="goTo('inicio')" class="nav-active">
+            <span>⌂</span>
+            Inicio
+        </button>
+
+        <button onclick="goTo('gym')">
+            <span>♧</span>
+            Gym
+        </button>
+
+        <button onclick="goTo('progreso')">
+            <span>⌁</span>
+            Progreso
+        </button>
+
+        <button onclick="goTo('diario')">
+            <span>♡</span>
+            Diario
+        </button>
+
+    </nav>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
